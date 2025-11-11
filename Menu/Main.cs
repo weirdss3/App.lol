@@ -7,12 +7,18 @@ using App.lol.Menu;
 using easyInputs;
 using MelonLoader;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace App.lol
 {
     // WHY IS THIS SO HARD AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
     internal class Main : MelonMod
     {
+        public override void OnApplicationStart()
+        {
+            base.OnApplicationStart();
+
+        }
         public static GameObject menu;
         public static GameObject menuBackground;
         public static GameObject Pagebuttons;
@@ -42,6 +48,11 @@ namespace App.lol
             {
 
             }
+        }
+
+        public static void Motdstuff()
+        {
+            GameObject.Find("motdtext").GetComponent<Text>().text = "Hello, Thanks for Testing App.lol This Menu";
         }
     }
 }
