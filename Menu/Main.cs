@@ -17,11 +17,17 @@ namespace App.lol
         public override void OnApplicationStart()
         {
             base.OnApplicationStart();
-
+        
+            
         }
+        public static Font activeFont = Arial;
+        public static Font Arial = Resources.GetBuiltinResource<Font>("Arial.ttf") as Font;
         public static GameObject menu;
         public static GameObject menuBackground;
         public static GameObject Pagebuttons;
+        public static GameObject DisconnectButton;
+        public static GameObject NextPage;
+        public static GameObject PrevPage;
         public static void Open()
         {
 
@@ -30,29 +36,38 @@ namespace App.lol
 
         public static void CreateMenu()
         {
-           menu = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            UnityEngine.Object.Destroy(menu.GetComponent<Rigidbody>());
-            UnityEngine.Object.Destroy(menu.GetComponent<BoxCollider>());
-            UnityEngine.Object.Destroy(menu.GetComponent<Renderer>());
-            menu.transform.localScale = new Vector3(0.1f, 0.3f, 0.3825f);
-            menuBackground = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            UnityEngine.Object.Destroy(menuBackground.GetComponent<Rigidbody>());
-            UnityEngine.Object.Destroy(menuBackground.GetComponent<BoxCollider>());
-            menuBackground.transform.parent = menu.transform;
-            menuBackground.transform.rotation = Quaternion.identity;
-            menuBackground.transform.localScale = new Vector3(0.1f, 1f, 1f);
-            menuBackground.GetComponent<Renderer>().material.color = MenuVars.BackgroundColor;
-            menuBackground.transform.position = new Vector3(0.05f, 0f, 0f);
-
-            if (MenuHandler.PageButtons)
+            if (EasyInputs.GetSecondaryButtonDown(EasyHand.LeftHand))
             {
+                Text text = new GameObject
+                {
+                    transform =
+                {
+                    parent = menuBackground.transform
+                }
+                }.AddComponent<Text>();
+                text.font = activeFont;
+                text.text = "App.lol";
+                menu = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                UnityEngine.Object.Destroy(menu.GetComponent<Rigidbody>());
+                UnityEngine.Object.Destroy(menu.GetComponent<BoxCollider>());
+                UnityEngine.Object.Destroy(menu.GetComponent<Renderer>());
+                menu.transform.localScale = new Vector3(0.1f, 0.3f, 0.3825f);
+                menuBackground = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                UnityEngine.Object.Destroy(menuBackground.GetComponent<Rigidbody>());
+                UnityEngine.Object.Destroy(menuBackground.GetComponent<BoxCollider>());
+                menuBackground.transform.parent = menu.transform;
+                menuBackground.transform.rotation = Quaternion.identity;
+                menuBackground.GetComponent<Renderer>().material.color = MenuVars.BackgroundColor;
+                menuBackground.transform.position = new Vector3(0.05f, 0f, 0f);
+                DisconnectButton = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
             }
+
         }
 
         public static void Motdstuff()
         {
-            GameObject.Find("motdtext").GetComponent<Text>().text = "Hello, Thanks for Testing App.lol This Menu";
+            GameObject.Find("motdtext").GetComponent<Text>().text = "Hello, Thanks for Testing App.lol, This Menu Was Made From SCRATCH \n Meaning Yes i used NO templates Skid if gay";
         }
     }
 }
